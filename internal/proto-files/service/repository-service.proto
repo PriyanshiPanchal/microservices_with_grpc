@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "proto-files/service";
+
+import "grpc-microservices/internal/proto-files/domain/repository.proto";
+
+service RepositoryService {
+	rpc add (domain.Repository) returns (AddRepositoryResponse);
+}
+ 
+message AddRepositoryResponse {
+	domain.Repository addedRepository = 1;
+	Error error = 2;
+}
+message Error {
+	string code = 1;
+	string message = 2;
+}
